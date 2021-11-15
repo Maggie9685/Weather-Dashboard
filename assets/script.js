@@ -55,7 +55,7 @@ var getCityWeather = function (lat, lon, searchTerm, city) { //Find Lat and Lon
         if (response.ok) {
           //console.log(response);
           response.json().then(function (data) {
-            //console.log(data);
+            console.log(data);
             displayWeather(data, searchTerm);
           });
         } else {
@@ -100,14 +100,32 @@ var displayWeather = function (weather, searchTerm) {
     var temperature = document.createElement("p");
     var wind = document.createElement("p");
     var humid = document.createElement("p");
+    var uvi = document.createElement("p");
 
     temperature.textContent = "Temp: " + weather.current.temp + "°F";
     wind.textContent = "Wind: " + weather.current.wind_speed + " MPH";
     humid.textContent = "Humid: " + weather.current.humidity + " %";
+    uvi.textContent = "UV Index: " + weather.current.uvi;
+
+    if(weather.current.uvi <= 2){
+      uvi.setAttribute("style", "color: green;");
+    }else if(weather.current.uvi <= 5){
+      uvi.setAttribute("style", "color: yellow;");
+    }else if(weather.current.uvi <= 7){
+      uvi.setAttribute("style", "color: orange;");
+    }else if(weather.current.uvi <= 10){
+      uvi.setAttribute("style", "color: red;");
+    }else{
+      uvi.setAttribute("style", "color: violet;");
+    }
+
+
+
 
     weatherContainerEl.appendChild(temperature);
     weatherContainerEl.appendChild(wind);
     weatherContainerEl.appendChild(humid);
+    weatherContainerEl.appendChild(uvi);
 
 
     $("#weather-forecast").text("5-Day Forecast");
