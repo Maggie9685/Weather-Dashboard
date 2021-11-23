@@ -69,7 +69,7 @@ var getCityWeather = function (lat, lon, searchTerm, city) { //Find Lat and Lon
 
 var findLatLon = function (city) { //Find City
       //add + to replace space in the city string
-    var apiUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=a9b3f314afeb32ca443fa3fe09d0633e';
+    var apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=a9b3f314afeb32ca443fa3fe09d0633e';
   
     fetch(apiUrl)
       .then(function (response) {
